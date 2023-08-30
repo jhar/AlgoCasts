@@ -14,6 +14,12 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+function pyramid(n) {
+  Array.from({ length: n }, (_, i) => {
+    const right = '#'.repeat(i + 1) + ' '.repeat(n - i - 1)
+    const left = right.split('').slice(1).reverse().join('')
+    console.log(left + right)
+  });
+}
 
 module.exports = pyramid;
