@@ -33,15 +33,21 @@ class Tree {
   }
 
   traverseBF(fn) {
-    const queue = [];
-    queue.push(this.root);
+    const arr = [this.root];
 
-    while (queue.length > 0) {
-      const node = queue.shift();
-      for (const child of node.children) {
-        queue.push(child);
-      }
+    while (arr.length) {
+      const node = arr.shift();
+      arr.push(...node.children);
+      fn.call(this, node);
+    }
+  }
 
+  traverseDF(fn) {
+    const arr = [this.root];
+
+    while (arr.length) {
+      const node = arr.shift();
+      arr.unshift(...node.children);
       fn.call(this, node);
     }
   }
